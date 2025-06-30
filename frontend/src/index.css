@@ -1,0 +1,5 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* No plugin/theme logic here — just Tailwind CSS */
