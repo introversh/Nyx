@@ -10,7 +10,7 @@ import path from "path";
 
 dotenv.config()
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5001;
 const __dirname = path.resolve();
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
