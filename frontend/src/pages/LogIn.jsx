@@ -10,11 +10,20 @@ const LogIn = () => {
     email: "",
     password: "",
   });
+
   const { login, isLoggingIn } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     login(formData);
+  };
+
+  // 👉 Guest login handler
+  const handleGuestLogin = () => {
+    login({
+      email: "admin@gmail.com",
+      password: "admin@123",
+    });
   };
 
   return (
@@ -26,8 +35,8 @@ const LogIn = () => {
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
               <div
-                className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20
-              transition-colors"
+                className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center
+                group-hover:bg-primary/20 transition-colors"
               >
                 <MessageSquare className="w-6 h-6 text-primary" />
               </div>
@@ -38,6 +47,7 @@ const LogIn = () => {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Email */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Email</span>
@@ -48,14 +58,17 @@ const LogIn = () => {
                 </div>
                 <input
                   type="email"
-                  className={`input input-bordered w-full pl-10`}
+                  className="input input-bordered w-full pl-10"
                   placeholder="you@example.com"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                 />
               </div>
             </div>
 
+            {/* Password */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Password</span>
@@ -66,10 +79,12 @@ const LogIn = () => {
                 </div>
                 <input
                   type={showPassword ? "text" : "password"}
-                  className={`input input-bordered w-full pl-10`}
+                  className="input input-bordered w-full pl-10"
                   placeholder="••••••••"
                   value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
                 />
                 <button
                   type="button"
@@ -85,7 +100,12 @@ const LogIn = () => {
               </div>
             </div>
 
-            <button type="submit" className="btn btn-primary w-full" disabled={isLoggingIn}>
+            {/* Sign in */}
+            <button
+              type="submit"
+              className="btn btn-primary w-full"
+              disabled={isLoggingIn}
+            >
               {isLoggingIn ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
@@ -94,6 +114,19 @@ const LogIn = () => {
               ) : (
                 "Sign in"
               )}
+            </button>
+
+            {/* Divider */}
+            <div className="divider">OR</div>
+
+            {/* Guest Login */}
+            <button
+              type="button"
+              onClick={handleGuestLogin}
+              className="btn btn-outline w-full"
+              disabled={isLoggingIn}
+            >
+              Continue as Guest
             </button>
           </form>
 
@@ -108,12 +141,13 @@ const LogIn = () => {
         </div>
       </div>
 
-      {/* Right Side - Image/Pattern */}
+      {/* Right Side */}
       <AuthImagePattern
-        title={"Welcome back!"}
-        subtitle={"Sign in to continue your conversations and catch up with your messages."}
+        title="Welcome back!"
+        subtitle="Sign in to continue your conversations and catch up with your messages."
       />
     </div>
   );
 };
+
 export default LogIn;
