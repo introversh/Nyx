@@ -17,7 +17,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cookieParser())
 app.use(cors(
     {
-        origin:"https://chatwithnyx.onrender.com/",
+        origin:"https://chatwithnyx.onrender.com",
         credentials:true
     }
 ))
