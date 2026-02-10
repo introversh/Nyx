@@ -4,7 +4,7 @@ import toast from "react-hot-toast"
 import axios from "axios"
 import {io} from  "socket.io-client"
 
-const BASE_URL=import.meta.env.MODE==="development"?"http://localhost:5001":"/"
+const BASE_URL=import.meta.env.MODE==="development"?"http://localhost:5001":"https://nyx-6amq.onrender.com"
 
 export const useAuthStore = create((set,get)=>({
     authUser:null,
